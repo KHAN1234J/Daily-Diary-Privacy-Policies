@@ -1,1 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Dairy — Policies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #f9f4ec;
+      --warm-white: #fdfaf5;
+      --ink: #1a1208;
+      --brown: #5c3d1e;
+      --amber: #c8873a;
+      --amber-light: #e8c08a;
+      --muted: #8a7560;
+      --rule: #d4c4a8;
+      --section-bg: #f2ead8;
+    }
 
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--cream);
+      color: var(--ink);
+      line-height: 1.8;
+      font-size: 15.5px;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        0deg,
+        transparent, transparent 27px,
+        rgba(180,160,120,0.09) 27px, rgba(180,160,120,0.09) 28px
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    header {
+      position: relative;
+      z-index: 1;
+      background: var(--brown);
+      padding: 56px 40px 48px;
+      text-align: center;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 120%, #c8873a33 0%, transparent 70%);
+    }
+
+    .logo-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px; height: 60px;
+      border-radius: 16px;
+      background: var(--amber);
+      margin-bottom: 18px;
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: #fff;
+      font-weight: 700;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      position: relative;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--cream);
+      font-weight: 700;
+      position: relative;
+    }
+
+    header h1 em { font-style: italic; color: var(--amber-light); }
+
+    .header-sub {
+      font-weight: 300;
+      color: #c9b89a;
+      font-size: 13px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-top: 10px;
+      position: relative;
+    }
+
+    .header-rule {
+      width: 48px; height: 2px;
+      background: var(--amber);
+      margin: 18px auto 0;
+      position: relative;
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 52px 28px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .toc {
+      background: var(--warm-white);
+      border: 1px solid var(--rule);
+      border-left: 4px solid var(--amber);
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin-bottom: 48px;
+    }
+
+    .toc-title {
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+
+    .toc ol {
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .toc ol li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .toc-num {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--amber);
+      min-width: 22px;
+    }
+
+    .toc a {
+      color: var(--brown);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .toc a:hover { color: var(--amber); }
+
+    .intro {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 17px;
+      color: var(--brown);
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 32px;
+      margin-bottom: 48px;
+      line-height: 1.85;
+    }
+
+    .section { margin-bottom: 52px; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .section-num {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--amber);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
+      color: var(--brown);
+      font-weight: 700;
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    .last-updated {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--ink);
+      font-weight: 700;
+      margin: 26px 0 10px;
+    }
+
+    p { color: #3a2e1e; margin-bottom: 14px; }
+
+    /* Key fix: items are flex-row so text wraps naturally beside the number */
+    .policy-list {
+      list-style: none;
+      padding: 0;
+      margin: 12px 0 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .policy-list > li {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      color: #3a2e1e;
+      line-height: 1.75;
+    }
+
+    .policy-list > li > .num {
+      font-weight: 700;
+      color: var(--amber);
+      font-size: 13px;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .bullet-list {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 16px 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .bullet-list > li {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      color: #3a2e1e;
+      line-height: 1.75;
+    }
+
+    .bullet-list > li > .dash {
+      color: var(--amber);
+      font-weight: 700;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    strong { color: var(--brown); font-weight: 600; }
+
+    .callout {
+      background: var(--section-bg);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin: 14px 0;
+      border-left: 3px solid var(--amber);
+      font-size: 14.5px;
+      color: var(--brown);
+      line-height: 1.75;
+    }
+
+    a {
+      color: var(--amber);
+      text-decoration: none;
+      border-bottom: 1px solid var(--amber-light);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    a:hover { color: var(--brown); border-color: var(--brown); }
+
+    .contact-card {
+      background: var(--brown);
+      color: var(--cream);
+      border-radius: 12px;
+      padding: 32px 36px;
+      margin-top: 52px;
+      text-align: center;
+    }
+
+    .contact-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--amber-light);
+      margin: 0 0 10px;
+    }
+
+    .contact-card p { color: #c9b89a; font-size: 14.5px; margin: 0; }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 24px;
+      border-top: 1px solid var(--rule);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    footer span { color: var(--amber); }
+
+    @media (max-width: 520px) {
+      header { padding: 36px 20px 30px; }
+      .container { padding: 32px 18px 60px; }
+      .toc { padding: 20px 18px; }
+      .contact-card { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-mark">D</div>
+    <h1><em>Daily Dairy</em></h1>
+    <p class="header-sub">Rules, Regulations &amp; Policies</p>
+    <div class="header-rule"></div>
+  </header>
+
+  <div class="container">
+
+    <p class="intro">This document outlines the official policies for the Daily Dairy application. These policies ensure a safe, secure, and transparent experience for all users.</p>
+
+    <nav class="toc">
+      <p class="toc-title">Table of Contents</p>
+      <ol>
+        <li><span class="toc-num">01</span><a href="#privacy">Privacy Policy</a></li>
+        <li><span class="toc-num">02</span><a href="#tos">Terms of Service</a></li>
+        <li><span class="toc-num">03</span><a href="#rules">Rules &amp; Regulations</a></li>
+        <li><span class="toc-num">04</span><a href="#refund">Refund &amp; Subscription Policy</a></li>
+      </ol>
+    </nav>
+
+    <!-- 1. Privacy Policy -->
+    <section class="section" id="privacy">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2 class="section-title">Privacy Policy</h2>
+        <div class="section-line"></div>
+      </div>
+      <span class="last-updated">Last Updated: May 7, 2026</span>
+
+      <h3>Overview</h3>
+      <p>Daily Dairy is committed to protecting your privacy. This policy explains how we handle your information.</p>
+
+      <h3>Data Collection &amp; Storage</h3>
+      <ul class="policy-list">
+        <li><span class="num">1.</span><span><strong>Local Storage:</strong> All your diary entries — including text, images, tags, and mood data — are stored locally on your device using an encrypted-ready database (Hive). We do not have access to your personal journal entries.</span></li>
+        <li><span class="num">2.</span><span><strong>No Cloud Sync:</strong> Currently, Daily Dairy does not sync your data to any external servers or cloud services. Your data stays with you.</span></li>
+        <li><span class="num">3.</span><span><strong>Biometrics:</strong> If you enable biometric lock (Fingerprint / Face ID), the authentication is handled entirely by your device's secure hardware. We do not store or transmit your biometric data.</span></li>
+      </ul>
+
+      <h3>Third-Party Services</h3>
+      <ul class="policy-list">
+        <li><span class="num">1.</span><span><strong>Advertising:</strong> We use Google AdMob to display ads. AdMob may collect and use certain data (such as your device's advertising ID) to show personalized ads. Please refer to <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a> for more details.</span></li>
+        <li><span class="num">2.</span><span><strong>Analytics:</strong> We may use anonymized crash reporting to improve app stability.</span></li>
+      </ul>
+
+      <h3>Data Security</h3>
+      <div class="callout">Since your data is stored locally, the security of your entries depends on the security of your device. We recommend using the built-in PIN or Biometric lock feature for added protection.</div>
+    </section>
+
+    <!-- 2. Terms of Service -->
+    <section class="section" id="tos">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Terms of Service</h2>
+        <div class="section-line"></div>
+      </div>
+      <span class="last-updated">Last Updated: May 7, 2026</span>
+
+      <h3>1. Acceptance of Terms</h3>
+      <p>By downloading and using Daily Dairy, you agree to comply with these terms. If you do not agree, please discontinue use of the app.</p>
+
+      <h3>2. User Content</h3>
+      <ul class="bullet-list">
+        <li><span class="dash">—</span><span><strong>Ownership:</strong> You retain full ownership of all content you create in Daily Dairy.</span></li>
+        <li><span class="dash">—</span><span><strong>Responsibility:</strong> You are solely responsible for the content you write or upload. Daily Dairy does not monitor or control your local data.</span></li>
+      </ul>
+
+      <h3>3. Limitations of Liability</h3>
+      <ul class="bullet-list">
+        <li><span class="dash">—</span><span><strong>Data Loss:</strong> Since data is stored locally, we are not responsible for any data loss resulting from app deletion, device damage, or factory resets. Users are encouraged to use the Export feature (PDF / Share) to back up important entries.</span></li>
+        <li><span class="dash">—</span><span><strong>Service Availability:</strong> The app is provided "as is" without warranties of any kind.</span></li>
+      </ul>
+
+      <h3>4. Intellectual Property</h3>
+      <p>The app's design, code, and logo are the property of <strong>Antigravity</strong>. You may not reverse-engineer, decompile, or redistribute the application without express permission.</p>
+    </section>
+
+    <!-- 3. Rules and Regulations -->
+    <section class="section" id="rules">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Rules &amp; Regulations</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <p>General guidelines for all Daily Dairy users.</p>
+
+      <h3>1. Safe Usage</h3>
+      <ul class="bullet-list">
+        <li><span class="dash">—</span><span><strong>Device Security:</strong> Protect your device with a password or biometric lock to prevent unauthorized access to your personal diary.</span></li>
+        <li><span class="dash">—</span><span><strong>Backup Habits:</strong> Regularly export your entries if they are critical, as local storage can be cleared if the app is uninstalled.</span></li>
+      </ul>
+
+      <h3>2. Prohibited Actions</h3>
+      <ul class="bullet-list">
+        <li><span class="dash">—</span><span><strong>Illegal Content:</strong> Do not use the app to store or generate content that violates local or international laws.</span></li>
+        <li><span class="dash">—</span><span><strong>Malicious Use:</strong> Do not attempt to bypass security features or interfere with the app's functionality.</span></li>
+      </ul>
+
+      <h3>3. Community &amp; Integrity</h3>
+      <div class="callout">Daily Dairy is a private tool. Please respect the privacy of others if they share their device with you.</div>
+    </section>
+
+    <!-- 4. Refund & Subscription -->
+    <section class="section" id="refund">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Refund &amp; Subscription Policy</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <p style="font-size:13px; color: var(--muted); font-style: italic;">Note: Only applicable if premium features are added in the future.</p>
+
+      <ul class="bullet-list" style="margin-top: 14px;">
+        <li><span class="dash">—</span><span><strong>Free Version:</strong> The core features of Daily Dairy are free to use, supported by ads.</span></li>
+        <li><span class="dash">—</span><span><strong>Premium Upgrades:</strong> Any future one-time purchases or subscriptions will be handled through the official Google Play Store or Apple App Store billing systems. Refunds will be subject to the respective store's refund policy.</span></li>
+      </ul>
+    </section>
+
+    <div class="contact-card">
+      <h3>Contact Information</h3>
+      <p>For any questions regarding these policies, please reach out through the official support channels within the app settings or via the store listing contact.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    &copy; 2026 <span>Antigravity</span> &mdash; Daily Dairy. All rights reserved.
+  </footer>
+
+</body>
+</html>
